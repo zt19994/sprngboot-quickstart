@@ -1,4 +1,4 @@
-package demo.springboot.web;
+package demo.springboot.controller;
 
 import demo.springboot.config.PeopleProperties;
 import org.springframework.beans.factory.annotation.Autowired;

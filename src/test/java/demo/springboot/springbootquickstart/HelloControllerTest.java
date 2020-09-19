@@ -1,6 +1,6 @@
 package demo.springboot.springbootquickstart;
 
-import demo.springboot.web.HelloController;
+import demo.springboot.controller.HelloController;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
