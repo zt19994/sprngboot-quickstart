@@ -1,4 +1,4 @@
-package demo.springboot.dao;
+package demo.springboot.dao.cluster;
 
 import demo.springboot.entity.City;
 import org.apache.ibatis.annotations.Param;

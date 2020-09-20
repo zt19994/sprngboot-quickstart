@@ -1,44 +1,36 @@
 package demo.springboot.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-
 /**
+ * 用户类
+ *
  * @author zt1994 2020/9/17 16:35
  */
-@Entity
-public class User implements Serializable {
+public class User {
 
     /**
-     * id
+     * 城市编号
      */
-    @Id
-    @GeneratedValue
     private Long id;
 
     /**
-     * 名称
+     * 城市名称
      */
-    @NotEmpty(message = "姓名不能为空")
-    @Size(min = 2, max = 8, message = "姓名长度必须大于 2 且小于 20 字")
-    private String name;
+    private String userName;
 
     /**
-     * 年龄
+     * 描述
      */
-    @NotNull(message = "年龄不能为空")
-    @Min(value = 0, message = "年龄大于0")
-    @Max(value = 200, message = "年龄不大于200")
-    private Integer age;
+    private String description;
 
-    /**
-     * 出生时间
-     */
-    @NotEmpty(message = "出生时间不能为空")
-    private String birthday;
+    private City city;
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     public Long getId() {
         return id;
@@ -48,37 +40,19 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", birthday='" + birthday + '\'' +
-                '}';
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,54 +1,32 @@
 package demo.springboot.service.impl;
 
+import demo.springboot.dao.cluster.CityMapper;
+import demo.springboot.dao.master.UserMapper;
+import demo.springboot.entity.City;
 import demo.springboot.entity.User;
 import demo.springboot.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * user service
+ * 用户业务实现层
  *
- * @author zt1994 2020/9/17 16:25
+ * @author zt1994 2020/9/20 16:38
  */
 @Service
 public class UserServiceImpl implements UserService {
 
-    /**
-     * 查找所有
-     *
-     * @return
-     */
-    @Override
-    public List<User> findAll() {
-        List<User> list = new ArrayList<User>();
-        User user = new User();
-        user.setId(1L);
-        user.setName("peter");
-        user.setAge(18);
-        user.setBirthday("2020-12-12");
-        list.add(user);
-        return list;
-    }
+    @Autowired
+    private UserMapper userMapper; // 主数据源
+
+    @Autowired
+    private CityMapper cityMapper; // 从数据源
 
     @Override
-    public User insertByUser(User user) {
-        return null;
-    }
-
-    @Override
-    public User findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public User update(User user) {
-        return null;
-    }
-
-    @Override
-    public User delete(Long id) {
-        return null;
+    public User findByName(String userName) {
+        User user = userMapper.findByName(userName);
+        City city = cityMapper.findByName("成都市");
+        user.setCity(city);
+        return user;
     }
 }
