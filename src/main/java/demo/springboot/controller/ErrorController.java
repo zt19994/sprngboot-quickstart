@@ -3,6 +3,7 @@ package demo.springboot.controller;
 import demo.springboot.entity.JsonResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -26,12 +27,24 @@ public class ErrorController {
         return "thymeleaf/error";
     }
 
+
+    /**
+     * ajax异常
+     *
+     * @return
+     */
     @GetMapping("/ajaxerror")
     public String ajaxerror() {
         return "thymeleaf/ajaxerror";
     }
 
-    @GetMapping("/getAjaxerror")
+
+    /**
+     * 获取ajax异常
+     *
+     * @return
+     */
+    @PostMapping("/getAjaxerror")
     public JsonResult getAjaxerror() {
         int a = 1 / 0;
         return JsonResult.ok();
