@@ -4,6 +4,7 @@ import demo.springboot.entity.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -26,7 +27,7 @@ public class FreemarkerController {
      * @param map
      * @return
      */
-    @RequestMapping("/index")
+    @GetMapping("/index")
     public String index(ModelMap map) {
         map.addAttribute("resource", resource);
         return "freemarker/index";
@@ -38,7 +39,7 @@ public class FreemarkerController {
      *
      * @return
      */
-    @RequestMapping("/center")
+    @GetMapping("/center")
     public String center() {
         return "freemarker/center/center";
     }

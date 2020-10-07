@@ -5,11 +5,11 @@
         <result column="id" property="id" />
         <result column="province_id" property="provinceId" />
         <result column="city_name" property="cityName" />
-        <result column="description" property="description" />
+        <result column="desc" property="desc" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, province_id, city_name, description
+        id, province_id, city_name, desc
     </sql>
 
     <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">

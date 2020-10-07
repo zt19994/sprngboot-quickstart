@@ -3,12 +3,12 @@
 <mapper namespace="demo.springboot.dao.master.UserMapper">
     <resultMap id="BaseResultMap" type="demo.springboot.entity.User">
         <result column="id" property="id" />
-        <result column="user_name" property="userName" />
-        <result column="description" property="description" />
+        <result column="user_name" property="name" />
+        <result column="desc" property="desc" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_name, description
+        id, user_name, desc
     </sql>
 
     <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">
