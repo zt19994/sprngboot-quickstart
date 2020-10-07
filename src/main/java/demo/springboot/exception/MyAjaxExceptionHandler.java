@@ -1,8 +1,6 @@
 package demo.springboot.exception;
 
 import demo.springboot.entity.JsonResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author zt1994
  * @date 2020/10/7 20:44
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class MyAjaxExceptionHandler {
 
     /**
@@ -23,7 +21,7 @@ public class MyAjaxExceptionHandler {
      * @return
      * @throws Exception
      */
-    @ExceptionHandler(value = Exception.class)
+    //@ExceptionHandler(value = Exception.class)
     public JsonResult defaultErrorHandler(HttpServletRequest req,
                                           Exception e) throws Exception {
 

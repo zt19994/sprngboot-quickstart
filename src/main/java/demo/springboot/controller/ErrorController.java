@@ -34,7 +34,7 @@ public class ErrorController {
      * @return
      */
     @GetMapping("/ajaxerror")
-    public String ajaxerror() {
+    public String ajaxError() {
         return "thymeleaf/ajaxerror";
     }
 
@@ -45,7 +45,7 @@ public class ErrorController {
      * @return
      */
     @PostMapping("/getAjaxerror")
-    public JsonResult getAjaxerror() {
+    public JsonResult getAjaxError() {
         int a = 1 / 0;
         return JsonResult.ok();
     }
