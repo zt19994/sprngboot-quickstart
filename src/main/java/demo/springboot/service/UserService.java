@@ -1,6 +1,9 @@
 package demo.springboot.service;
 
+import demo.springboot.entity.SysUser;
 import demo.springboot.entity.User;
+
+import java.util.List;
 
 /**
  * 用户业务层
@@ -17,4 +20,48 @@ public interface UserService {
      * @return
      */
     User findByName(String userName);
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     * @throws Exception
+     */
+    void saveUser(SysUser user) throws Exception;
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
+    void updateUser(SysUser user);
+
+    /**
+     * 删除用户
+     *
+     * @param userId
+     */
+    void deleteUser(String userId);
+
+    /**
+     * 通过id查询用户
+     *
+     * @param userId
+     * @return
+     */
+    SysUser queryUserById(String userId);
+
+    /**
+     * 查询用户列表
+     *
+     * @param user
+     * @return
+     */
+    List<SysUser> queryUserList(SysUser user);
+
+    //List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize);
+
+    //SysUser queryUserByIdCustom(String userId);
+
+    //void saveUserTransactional(SysUser user);
 }

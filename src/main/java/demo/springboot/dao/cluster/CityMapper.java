@@ -2,12 +2,14 @@ package demo.springboot.dao.cluster;
 
 import demo.springboot.entity.City;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 /**
  * 城市 dao 接口类
  *
  * @author zt1994 2020/9/19 20:09
  */
+@Component
 public interface CityMapper {
 
     /**

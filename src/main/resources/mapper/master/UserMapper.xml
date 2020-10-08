@@ -4,11 +4,11 @@
     <resultMap id="BaseResultMap" type="demo.springboot.entity.User">
         <result column="id" property="id" />
         <result column="user_name" property="name" />
-        <result column="desc" property="desc" />
+        <result column="description" property="desc" />
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_name, desc
+        id, user_name, description
     </sql>
 
     <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String">
