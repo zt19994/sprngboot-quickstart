@@ -69,7 +69,13 @@ public interface UserService {
      */
     List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize);
 
-    //SysUser queryUserByIdCustom(String userId);
+    /**
+     * 自定义mapper查询
+     *
+     * @param userId
+     * @return
+     */
+    SysUser queryUserByIdCustom(String userId);
 
     //void saveUserTransactional(SysUser user);
 }

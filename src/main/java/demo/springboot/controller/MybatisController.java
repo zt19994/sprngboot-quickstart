@@ -133,4 +133,16 @@ public class MybatisController {
 
         return JsonResult.ok(userList);
     }
+
+
+    /**
+     * 自定义mapper查询
+     *
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/queryUserByIdCustom")
+    public JsonResult queryUserByIdCustom(String userId) {
+        return JsonResult.ok(userService.queryUserByIdCustom(userId));
+    }
 }

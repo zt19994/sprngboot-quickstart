@@ -3,6 +3,7 @@ package demo.springboot.service.impl;
 import com.github.pagehelper.PageHelper;
 import demo.springboot.dao.cluster.CityMapper;
 import demo.springboot.dao.master.SysUserMapper;
+import demo.springboot.dao.master.SysUserMapperCustom;
 import demo.springboot.dao.master.UserMapper;
 import demo.springboot.entity.City;
 import demo.springboot.entity.SysUser;
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private SysUserMapperCustom userMapperCustom;
 
     @Override
     public User findByName(String userName) {
@@ -93,6 +97,22 @@ public class UserServiceImpl implements UserService {
         }
         example.orderBy("registTime").desc();
         return sysUserMapper.selectByExample(example);
+    }
+
+
+    /**
+     * 自定义mapper查询
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public SysUser queryUserByIdCustom(String userId) {
+        List<SysUser> userList = userMapperCustom.queryUserSimplyInfoById(userId);
+        if (userList != null && !userList.isEmpty()) {
+            return userList.get(0);
+        }
+        return null;
     }
 
 }
