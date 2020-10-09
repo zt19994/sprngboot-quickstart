@@ -77,5 +77,10 @@ public interface UserService {
      */
     SysUser queryUserByIdCustom(String userId);
 
-    //void saveUserTransactional(SysUser user);
+    /**
+     * 事务管理
+     *
+     * @param user
+     */
+    void saveUserTransactional(SysUser user);
 }

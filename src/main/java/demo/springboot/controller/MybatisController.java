@@ -145,4 +145,25 @@ public class MybatisController {
     public JsonResult queryUserByIdCustom(String userId) {
         return JsonResult.ok(userService.queryUserByIdCustom(userId));
     }
+
+
+    /**
+     * 测试事务
+     *
+     * @return
+     */
+    @RequestMapping("/saveUserTransactional")
+    public JsonResult saveUserTransactional() {
+        SysUser user = new SysUser();
+        user.setId("1002");
+        user.setUsername("mark" + new Date());
+        user.setNickname("mark" + new Date());
+        user.setPassword("abc123");
+        user.setIsDelete(0);
+        user.setRegistTime(new Date());
+
+        userService.saveUserTransactional(user);
+
+        return JsonResult.ok("保存成功");
+    }
 }

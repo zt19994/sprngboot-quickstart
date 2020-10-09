@@ -11,6 +11,8 @@ import demo.springboot.entity.User;
 import demo.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -51,26 +53,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void saveUser(SysUser user) throws Exception {
         sysUserMapper.insert(user);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateUser(SysUser user) {
         sysUserMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void deleteUser(String userId) {
         sysUserMapper.deleteByPrimaryKey(userId);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public SysUser queryUserById(String userId) {
         return sysUserMapper.selectByPrimaryKey(userId);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<SysUser> queryUserList(SysUser user) {
         return sysUserMapper.selectByExample(user);
     }
@@ -85,6 +92,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize) {
         // 开始分页
         PageHelper.startPage(page, pageSize);
@@ -107,12 +115,27 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public SysUser queryUserByIdCustom(String userId) {
         List<SysUser> userList = userMapperCustom.queryUserSimplyInfoById(userId);
         if (userList != null && !userList.isEmpty()) {
             return userList.get(0);
         }
         return null;
+    }
+
+    /**
+     * 事务管理
+     *
+     * @param user
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void saveUserTransactional(SysUser user) {
+        sysUserMapper.insert(user);
+        int a = 1 / 0;
+        user.setIsDelete(1);
+        sysUserMapper.updateByPrimaryKeySelective(user);
     }
 
 }
