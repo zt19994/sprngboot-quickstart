@@ -1,7 +1,8 @@
 package demo.springboot.service.impl;
 
-import demo.springboot.dao.master.SysUserMapper;
+import com.github.pagehelper.PageHelper;
 import demo.springboot.dao.cluster.CityMapper;
+import demo.springboot.dao.master.SysUserMapper;
 import demo.springboot.dao.master.UserMapper;
 import demo.springboot.entity.City;
 import demo.springboot.entity.SysUser;
@@ -9,6 +10,8 @@ import demo.springboot.entity.User;
 import demo.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -66,6 +69,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<SysUser> queryUserList(SysUser user) {
         return sysUserMapper.selectByExample(user);
+    }
+
+
+    /**
+     * 分页查询
+     *
+     * @param user
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize) {
+        // 开始分页
+        PageHelper.startPage(page, pageSize);
+
+        Example example = new Example(SysUser.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (!StringUtils.isEmptyOrWhitespace(user.getNickname())) {
+            criteria.andLike("nickname", "%" + user.getNickname() + "%");
+        }
+        example.orderBy("registTime").desc();
+        return sysUserMapper.selectByExample(example);
     }
 
 }

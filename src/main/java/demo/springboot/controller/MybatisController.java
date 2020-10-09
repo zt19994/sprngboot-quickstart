@@ -111,4 +111,26 @@ public class MybatisController {
 
         return JsonResult.ok(userList);
     }
+
+
+    /**
+     * 分页查询
+     *
+     * @param page
+     * @return
+     */
+    @RequestMapping("/queryUserListPaged")
+    public JsonResult queryUserListPaged(Integer page) {
+        if (page == null) {
+            page = 1;
+        }
+        int pageSize = 3;
+
+        SysUser user = new SysUser();
+        //user.setNickname("p");
+
+        List<SysUser> userList = userService.queryUserListPaged(user, page, pageSize);
+
+        return JsonResult.ok(userList);
+    }
 }

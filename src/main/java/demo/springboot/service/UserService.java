@@ -59,7 +59,15 @@ public interface UserService {
      */
     List<SysUser> queryUserList(SysUser user);
 
-    //List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize);
+    /**
+     * 分页查询
+     *
+     * @param user
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize);
 
     //SysUser queryUserByIdCustom(String userId);
 
