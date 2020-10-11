@@ -12,3 +12,4 @@ springboot快速开始
 9. springboot整合事务管理
 10. springboot整合redis
 11. springboot整合定时任务
+12. springboot整合异步任务
