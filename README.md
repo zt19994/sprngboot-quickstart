@@ -10,3 +10,4 @@ springboot快速开始
 7. springboot整合mybatis
 8. springboot整合pagehelper
 9. springboot整合事务管理
+10. springboot整合redis

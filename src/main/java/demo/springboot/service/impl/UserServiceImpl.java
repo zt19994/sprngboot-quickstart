@@ -44,6 +44,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SysUserMapperCustom userMapperCustom;
 
+
+    /**
+     * 根据用户名查找城市
+     *
+     * @param userName
+     * @return
+     */
     @Override
     public User findByName(String userName) {
         User user = userMapper.findByName(userName);
@@ -52,32 +59,45 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     * @throws Exception
+     */
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void saveUser(SysUser user) throws Exception {
         sysUserMapper.insert(user);
     }
 
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void updateUser(SysUser user) {
         sysUserMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteUser(String userId) {
         sysUserMapper.deleteByPrimaryKey(userId);
     }
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
     public SysUser queryUserById(String userId) {
         return sysUserMapper.selectByPrimaryKey(userId);
     }
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
     public List<SysUser> queryUserList(SysUser user) {
         return sysUserMapper.selectByExample(user);
     }
@@ -92,7 +112,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
     public List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize) {
         // 开始分页
         PageHelper.startPage(page, pageSize);
@@ -115,7 +135,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
     public SysUser queryUserByIdCustom(String userId) {
         List<SysUser> userList = userMapperCustom.queryUserSimplyInfoById(userId);
         if (userList != null && !userList.isEmpty()) {
@@ -130,7 +150,7 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void saveUserTransactional(SysUser user) {
         sysUserMapper.insert(user);
         int a = 1 / 0;
