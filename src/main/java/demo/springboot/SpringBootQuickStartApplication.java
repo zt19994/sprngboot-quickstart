@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * SpringBootQuickStartApplication
  * <p>
  * EnableScheduling 开启定时任务
+ * EnableAsync 开启异步任务
  *
  * @author zt1994
  */
